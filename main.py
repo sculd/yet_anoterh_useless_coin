@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # [START app]
-import logging, scanner.feed as scanner_feed, scanner.entity as entity
+import logging
 
 from flask import Flask, render_template, jsonify
 
