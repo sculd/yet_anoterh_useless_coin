@@ -1,0 +1,66 @@
+#Progress {
+    width: 100%;
+    background: #f5f5f5;
+    border-radius: 3px;
+    /*
+    padding: 0 2px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    */
+	position: relative;
+}
+#Loader {
+	display:none;
+	width: 1%;
+    height: 35px;
+    background-color: #00cae3;
+    text-align: center;
+    line-height: 35px;
+    color: white;
+    border-radius: 3px;
+    /*
+    margin: 2px 0;
+    border: 1px solid #39C3D9;
+    */
+	position: relative;
+}
+.btntoLoad {
+	text-align: center;
+}
+#myProgressstatus{
+	display:none;
+}
+div#myProgressstatus {
+	text-align: center;
+	font-size: 10px;
+	color:#3C4857;
+}
+button#loadclick:hover {
+	opacity: 0.8;
+}
+button#loadclick {
+    font-weight: 600;
+    cursor: pointer;
+    word-spacing: normal;
+    line-height: normal;
+    font-family: inherit;
+    font-size: 17px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+#progress-percentage {
+	display: none;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    /*
+    left: 50%;
+    width: 45px;
+    margin-left: -22.5px;
+    */
+    z-index: 99;
+    line-height: 35px;
+    color: #3C4857;
+    font-weight: bold;
+    font-size: 18px;
+}
+	
