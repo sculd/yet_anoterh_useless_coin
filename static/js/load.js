@@ -7,17 +7,17 @@ $(document).ready(function() {
         status.style.display = "block";
         var loader = document.getElementById("Loader");
         var progressPercentage = document.getElementById("progress-percentage");
-        var finalstatus = document.getElementById("finalstatus");   
+        var finalstatus = document.getElementById("finalstatus");
         finalstatus.innerHTML="";
-        
+
         var width = 10;
-        var id = setInterval(frame, 25);
+        var id = setInterval(frame, 34);
 
         function frame() {
             if (width >= 100) {
                 clearInterval(id);
                 progressPercentage.innerHTML = '<span">DONE!</span>';
-                progressPercentage.style.left = "50%"
+                progressPercentage.style.left = "45%"
             } else {
                 width++;
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
                     progressPercentage.style.color = '#fff';
 
                 loader.style.width = width + '%';
-                progressPercentage.innerHTML = "<small>Definitely checking all documents carefully to make sure you're not from North Korea...</small>";
+                progressPercentage.innerHTML = "<small>Definitely checking all documents carefully to make sure you're not from North Korea.</small>";
 
                 loader.style.display = "block";
                 progressPercentage.style.display = "block";

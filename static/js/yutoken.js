@@ -14,7 +14,7 @@ function decodeStats(response, price) {
     return {
         totalContribution: totalContributionExact.round(3, BigNumber.ROUND_DOWN),
         totalContributionUSD: totalContributionUSDExact.round(0, BigNumber.ROUND_DOWN),
-        totalContributionTVs: totalContributionUSDExact.div(new BigNumber("3258")).round(0, BigNumber.ROUND_DOWN),
+        totalContributionRents: totalContributionUSDExact.div(new BigNumber("3258")).round(0, BigNumber.ROUND_DOWN),
         totalIssued: new BigNumber(result.substr(66, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
         totalBonusTokensIssued: new BigNumber(result.substr(130, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
         purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero() == false
@@ -26,8 +26,8 @@ function getStats(price) {
     return $.ajax(url, {
         cache: false,
         dataType: "json"
-    }).then(function (data) { 
-        return decodeStats(data, price); 
+    }).then(function (data) {
+        return decodeStats(data, price);
     });
 }
 
@@ -50,27 +50,27 @@ function updatePage(stats) {
 
     $("#total-ether").text(stats.totalContribution.toFixed(3));
     if (stats.totalContribution.toNumber() <= 0) {
-        $("#total-ether-message").text("Looks like everyone read the warnings so far.");
+        $("#total-ether-message").text("My internet is slow today.");
     } else {
-        $("#total-ether-message").text("I had a feeling someone would waste their money.");
+        $("#total-ether-message").text("All the way to Blockchain 3.0");
     }
 
     $("#total-usd").text("$" + stats.totalContributionUSD.toFixed(0));
     if (stats.totalContributionUSD.toNumber() <= 0) {
         $("#total-usd-message").text("No Ether yet, so no cash either.");
-    } else if (stats.totalContributionTVs.toNumber() < 1) {
-        $("#total-usd-message").text("Not enough to buy a television yet.");
-    }else if (stats.totalContributionTVs.toNumber() < 2) {
-        $("#total-usd-message").text("Enough to buy a television.");
+    } else if (stats.totalContributionRents.toNumber() < 1) {
+        $("#total-usd-message").text("Not enough to buy one month rent in the bay area omg.");
+    }else if (stats.totalContributionRents.toNumber() < 2) {
+        $("#total-usd-message").text("Enough to survive a month in bay area.");
     } else {
-        $("#total-usd-message").text("Enough to buy " + stats.totalContributionTVs.toFixed(0) + " televisions!");
+        $("#total-usd-message").text("Enough to pay " + stats.totalContributionRents.toFixed(0) + " months rent!");
     }
 
     $("#total-tokens").text(stats.totalIssued.toFixed(3));
     if (stats.totalIssued <= 0) {
-        $("#total-tokens-message").text("No useless tokens issued yet either.");
+        $("#total-tokens-message").text("No YUC issued yet.");
     } else if (stats.totalBonusTokensIssued.toNumber() <= 0) {
-        $("#total-tokens-message").text("Look at all those useless tokens!");
+        $("#total-tokens-message").text("Look at all Lambos!");
     } else {
         $("#total-tokens-message").text("Including " + stats.totalBonusTokensIssued.toFixed(3) + " bonus tokens!");
     }
