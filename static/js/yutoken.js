@@ -17,7 +17,7 @@ function decodeStats(response, price) {
         totalContributionRents: totalContributionUSDExact.div(new BigNumber("3258")).round(0, BigNumber.ROUND_DOWN),
         totalIssued: new BigNumber(result.substr(66, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
         totalBonusTokensIssued: new BigNumber(result.substr(130, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
-        purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero() == false
+        purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero() == true
     };
 }
 
