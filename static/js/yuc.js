@@ -10,12 +10,12 @@ function decodeStats(response, price) {
     var totalContributionUSDExact = totalContributionExact.times(new BigNumber(price));
 
     return {
-        purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero()
+        purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero(),
         totalContribution: totalContributionExact.round(3, BigNumber.ROUND_DOWN),
         totalContributionUSD: totalContributionUSDExact.round(0, BigNumber.ROUND_DOWN),
         totalContributionRents: totalContributionUSDExact.div(new BigNumber("3258")).round(0, BigNumber.ROUND_DOWN),
         totalIssued: new BigNumber(result.substr(66, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
-        totalBonusTokensIssued: new BigNumber(result.substr(130, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN),
+        totalBonusTokensIssued: new BigNumber(result.substr(130, 64), 16).div(weiPerEther).round(3, BigNumber.ROUND_DOWN)
     };
 }
 
