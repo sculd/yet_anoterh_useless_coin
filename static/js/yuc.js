@@ -1,3 +1,16 @@
+const contributeAddress = document.querySelector("#contribute-addres");
+
+contributeAddress.onclick = function() {
+  document.execCommand("copy");
+}
+
+contributeAddress.addEventListener("copy", function(event) {
+  event.preventDefault();
+  if (event.clipboardData) {
+    event.clipboardData.setData("text/plain", contributeAddress.textContent);
+  }
+});
+
 function decodeStats(response, price) {
     if (response == null) return null;
 
