@@ -23,7 +23,7 @@ function decodeStats(response, price) {
     var totalContributionUSDExact = totalContributionExact.times(new BigNumber(price));
 
     return {
-        purchasingAllowed: new BigNumber(result.substr(194, 64), 16).isZero(),
+        purchasingAllowed: !(new BigNumber(result.substr(194, 64), 16).isZero()),
         totalContribution: totalContributionExact.round(3, BigNumber.ROUND_DOWN),
         totalContributionUSD: totalContributionUSDExact.round(0, BigNumber.ROUND_DOWN),
         totalContributionRents: totalContributionUSDExact.div(new BigNumber("3258")).round(0, BigNumber.ROUND_DOWN),
@@ -59,19 +59,24 @@ function getPrice() {
 function updatePage(stats) {
     if (stats == null) return;
 
+    const totalContribution = stats.totalContribution.toNumber();
+    const totalContributionUSD = stats.totalContributionUSD.toNumber()
+    const totalContributionRents = stats.totalContributionRents.toNumber();
+    const totalBonusTokensIssued = stats.totalBonusTokensIssued.toNumber()
+
     $("#total-ether").text(stats.totalContribution.toFixed(3));
-    if (stats.totalContribution.toNumber() <= 0) {
+    if (totalContribution <= 0) {
         $("#total-ether-message").text("My internet is slow today.");
     } else {
         $("#total-ether-message").text("All the way to Blockchain 3.0");
     }
 
     $("#total-usd").text("$" + stats.totalContributionUSD.toFixed(0));
-    if (stats.totalContributionUSD.toNumber() <= 0) {
+    if (totalContributionUSD <= 0) {
         $("#total-usd-message").text("No Ether yet, so no cash either.");
-    } else if (stats.totalContributionRents.toNumber() < 1) {
+    } else if (totalContributionRents < 1) {
         $("#total-usd-message").text("Not enough to buy one month rent in the bay area omg.");
-    }else if (stats.totalContributionRents.toNumber() < 2) {
+    }else if (totalContributionRents < 2) {
         $("#total-usd-message").text("Enough to survive a month in bay area.");
     } else {
         $("#total-usd-message").text("Enough to pay " + stats.totalContributionRents.toFixed(0) + " months rent!");
@@ -80,7 +85,7 @@ function updatePage(stats) {
     $("#total-tokens").text(stats.totalIssued.toFixed(3));
     if (stats.totalIssued <= 0) {
         $("#total-tokens-message").text("No YUC issued yet.");
-    } else if (stats.totalBonusTokensIssued.toNumber() <= 0) {
+    } else if (totalBonusTokensIssued <= 0) {
         $("#total-tokens-message").text("Look at all Lambos!");
     } else {
         $("#total-tokens-message").text("Including " + stats.totalBonusTokensIssued.toFixed(3) + " bonus tokens!");
